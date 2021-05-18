@@ -1,1 +1,1 @@
-# mastermind
+This is a README file for Mastermind.
