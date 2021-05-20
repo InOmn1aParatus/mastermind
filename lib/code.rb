@@ -6,7 +6,6 @@ class Code
     end
 
     def generate
-        code_colors = ['R', 'G', 'B', 'Y']
-        @pattern = code_colors.shuffle!
+        @pattern = ['R', 'G', 'B', 'Y'].shuffle!
     end
 end
