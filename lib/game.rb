@@ -15,8 +15,21 @@ class Game
     Guess the code... and you win!
     Use up your turns... GAME OVER :(
     """
+    begin_game(user_input)
   end
 
+  def begin_game(user_input)
+    if user_input == 'p'
+      # run method
+    elsif user_input == 'i'
+      instructions
+    elsif user_input == 'q'
+      # exits
+    else
+      "Hmmmm..."
+      welcome
+    end
+  end
 end
 
 game = Game.new
