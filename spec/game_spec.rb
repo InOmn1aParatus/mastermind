@@ -22,5 +22,14 @@ RSpec.describe Game do
       expect(game).to respond_to(:welcome)
       expect(game).to respond_to(:instructions)
     end
+
+    xit 'accepts user input' do
+      game = Game.new
+
+      expect(game.begin_game('p')).to 
+    end
+
+    
+
   end
 end

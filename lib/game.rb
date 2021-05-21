@@ -10,7 +10,7 @@ class Game
   def welcome
     puts 'Welcome to MASTERMIND'
     puts 'Would you like to (p)lay, read the (i)nstructions, or (q)uit?'
-    # begin_game(user_input)
+    begin_game(gets.chomp)
   end
 
   def instructions
@@ -20,19 +20,22 @@ class Game
     puts 'Guess the code... and you win!'
     puts 'Use up your turns... GAME OVER :('
     puts '(p)lay? (q)uit?'
-    # begin_game(user_input)
+    begin_game(gets.chomp)
   end
 
-  # def begin_game(user_input)
-  #   if user_input == 'p'
-  #     # run method
-  #   elsif user_input == 'i'
-  #     instructions
-  #   elsif user_input == 'q'
-  #     # exits
-  #   else
-  #     "Hmmmm..."
-  #     welcome
-  #   end
-  # end
+  def begin_game(user_input)
+    if user_input == 'p'
+      # "banana"
+    elsif user_input == 'i'
+      instructions
+    elsif user_input == 'q'
+      # exits
+    else
+      "Hmmmm..."
+      welcome
+    end
+  end
+
+
+  
 end
