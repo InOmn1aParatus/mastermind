@@ -9,6 +9,12 @@ RSpec.describe Game do
     expect(game).to be_a(Game)
   end
 
+  it 'had Code attribute' do
+    game = Game.new
+
+    expect(game.code).to be_a(Code)
+  end
+
   context 'methods' do
     xit '' do
     end

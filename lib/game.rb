@@ -1,4 +1,11 @@
+require './lib/code'
+
 class Game
+  attr_reader :code
+
+  def initialize
+    @code = Code.new
+  end
 
   def welcome
     p 'Welcome to MASTERMIND'
