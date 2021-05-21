@@ -10,16 +10,7 @@ RSpec.describe Game do
   end
 
   context 'methods' do
-    xit 'displays welcome message' do
-      game = Game.new
-
-      expect(game.welcome).to start_with("Welcome")
-    end
-
-    xit 'has instructions' do
-      game = Game.new
-
-      expect(game.instructions).to start_with("I")
+    xit '' do
     end
   end
 end
