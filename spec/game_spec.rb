@@ -16,7 +16,11 @@ RSpec.describe Game do
   end
 
   context 'methods' do
-    xit '' do
+    it 'responds to printing methods' do
+      game = Game.new
+
+      expect(game).to respond_to(:welcome)
+      expect(game).to respond_to(:instructions)
     end
   end
 end
