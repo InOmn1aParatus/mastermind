@@ -14,11 +14,4 @@ RSpec.describe Guess do
 
     expect(Guess.turn_count).to eq(2)
   end
-
-  it 'tracks turn count' do
-    expect(Guess.turn_count).to eq(1)
-    guess_2 = Guess.new('rgbb')
-
-    expect(Guess.turn_count).to eq(2)
-  end
 end
