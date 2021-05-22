@@ -13,6 +13,7 @@ RSpec.describe Game do
     game = Game.new
 
     expect(game.code).to be_a(Code)
+    expect(game.code.pattern).to eq(['R', 'G', 'B', 'Y'])
   end
 
   context 'methods' do
@@ -26,10 +27,20 @@ RSpec.describe Game do
     xit 'accepts user input' do
       game = Game.new
 
-      expect(game.begin_game('p')).to 
+      expect(game.game_menu('p')).to 
     end
 
-    
+    xit 'calls generate & turn method' do
+      game = Game.new
 
+      expect
+    end
+
+    xit 'compares guess to code' do
+      game = Game.new
+
+      expect(game.compare('rgby')).to eq(true)
+      expect(game.compare('bbry')).to eq(false)
+    end
   end
 end

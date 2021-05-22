@@ -5,12 +5,14 @@ class Game
 
   def initialize
     @code = Code.new
+    @turn_count = 0
   end
 
   def welcome
     puts 'Welcome to MASTERMIND'
     puts 'Would you like to (p)lay, read the (i)nstructions, or (q)uit?'
-    begin_game(gets.chomp)
+    print '>  '
+    game_menu(gets.chomp)
   end
 
   def instructions
@@ -20,22 +22,32 @@ class Game
     puts 'Guess the code... and you win!'
     puts 'Use up your turns... GAME OVER :('
     puts '(p)lay? (q)uit?'
-    begin_game(gets.chomp)
+    print '>  '
+    game_menu(gets.chomp)
   end
 
-  def begin_game(user_input)
+  def game_menu(user_input)
     if user_input == 'p'
-      # "banana"
+      puts 'We playin now'
     elsif user_input == 'i'
       instructions
     elsif user_input == 'q'
-      # exits
+      puts 'We done'
     else
-      "Hmmmm..."
+      puts "Hmmmm...\n\n"
       welcome
     end
   end
 
+  def run
+    @code.generate
+    turn
+  end
 
-  
+  def turn
+  end
+
+  def compare(guess)
+    if guess.size != 4
+  end
 end
