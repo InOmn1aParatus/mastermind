@@ -26,13 +26,18 @@ class Game
     game_menu(gets.chomp)
   end
 
+  def quit
+    puts 'Thanks for playing. Come back when your ready for a challenge.'
+    exit
+  end
+
   def game_menu(user_input)
     if user_input == 'p'
       puts 'We playin now'
     elsif user_input == 'i'
       instructions
     elsif user_input == 'q'
-      puts 'We done'
+      quit
     else
       puts "Hmmmm...\n\n"
       welcome
@@ -45,26 +50,17 @@ class Game
   end
 
   def valid?(user_guess)
-    if user_guess.length < 4
-      if user_guess == 'c'
-        puts @code
-      elsif user_guess == 'q'
-        puts "good bye"
-      else
-        puts "too short"
-      end
-    elsif user_guess.length == 4
-      if user_guess contains 'r' || user_guess contains 'g' || user_guess contains 'b' || user_guess contains 'y' 
-
-        true
-      else
-        "Your can only contain r,g,b or y. please try agian"
-      end
+    user_guess.downcase!
+    if user_guess.count("rbgy") == 4
+      true
+    elsif user_guess == 'c'
+      p @code.pattern.join.downcase
+    elsif user_guess == 'q'
+      quit
     else
-      puts "too long"
-    # user_guess.split("")
+      puts "Your guess needs to be 4 characters and can only contain
+      r,g,b or y. please try agian."
     end
-    # elsif user_guess.is_a?(Integer)
   end
 
   def turn
@@ -74,6 +70,7 @@ class Game
       user_guess = (gets.chomp.upcase)
       valid?(user_guess)
     end
+
   end
 
   def compare(guess)
@@ -82,9 +79,9 @@ class Game
   end
 end
 
-game = Game.new
-user_guess = (gets.chomp)
-# require'pry';binding.pry
-result = game.valid?(user_guess)
-# puts result
-p "end"
+# game = Game.new
+# user_guess = (gets.chomp)
+# # require'pry';binding.pry
+# game.valid?(user_guess)
+# # puts result
+# # p "end"

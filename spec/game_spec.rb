@@ -27,7 +27,7 @@ RSpec.describe Game do
     xit 'accepts user input' do
       game = Game.new
 
-      expect(game.game_menu('p')).to 
+      expect(game.game_menu('p')).to
     end
 
     xit 'calls generate & turn method' do
@@ -41,6 +41,14 @@ RSpec.describe Game do
 
       expect(game.compare('rgby')).to eq(true)
       expect(game.compare('bbry')).to eq(false)
+    end
+
+    it 'checks input for validity' do
+      game = Game.new
+
+      expect(game.valid?('RgBy')).to eq(true)
+      # expect(game.valid?('c')).to eq('rgby')
+      # expect(game.valid?('q')).to eq('rgby')
     end
   end
 end
