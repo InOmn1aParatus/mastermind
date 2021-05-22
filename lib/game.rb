@@ -26,13 +26,18 @@ class Game
     game_menu(gets.chomp)
   end
 
+  def quit
+    puts 'Thanks for playing. Come back when your ready for a challenge.'
+    exit
+  end
+
   def game_menu(user_input)
     if user_input == 'p'
       puts 'We playin now'
     elsif user_input == 'i'
       instructions
     elsif user_input == 'q'
-      puts 'We done'
+      quit
     else
       puts "Hmmmm...\n\n"
       welcome
@@ -47,11 +52,11 @@ class Game
   def valid?(user_guess)
     user_guess.downcase!
     if user_guess.count("rbgy") == 4
-      puts 'valid'
+      true
     elsif user_guess == 'c'
       p @code.pattern.join.downcase
     elsif user_guess == 'q'
-      puts "good bye"
+      quit
     else
       puts "Your guess needs to be 4 characters and can only contain
       r,g,b or y. please try agian."
@@ -65,6 +70,7 @@ class Game
       user_guess = (gets.chomp.upcase)
       valid?(user_guess)
     end
+
   end
 
   def compare(guess)
@@ -73,9 +79,9 @@ class Game
   end
 end
 
-game = Game.new
-user_guess = (gets.chomp)
-# require'pry';binding.pry
-game.valid?(user_guess)
-# puts result
-# p "end"
+# game = Game.new
+# user_guess = (gets.chomp)
+# # require'pry';binding.pry
+# game.valid?(user_guess)
+# # puts result
+# # p "end"
