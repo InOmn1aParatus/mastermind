@@ -45,26 +45,17 @@ class Game
   end
 
   def valid?(user_guess)
-    if user_guess.length < 4
-      if user_guess == 'c'
-        puts @code
-      elsif user_guess == 'q'
-        puts "good bye"
-      else
-        puts "too short"
-      end
-    elsif user_guess.length == 4
-      if user_guess contains 'r' || user_guess contains 'g' || user_guess contains 'b' || user_guess contains 'y' 
-
-        true
-      else
-        "Your can only contain r,g,b or y. please try agian"
-      end
+    user_guess.downcase!
+    if user_guess.count("rbgy") == 4
+      puts 'valid'
+    elsif user_guess == 'c'
+      p @code.pattern.join.downcase
+    elsif user_guess == 'q'
+      puts "good bye"
     else
-      puts "too long"
-    # user_guess.split("")
+      puts "Your guess needs to be 4 characters and can only contain
+      r,g,b or y. please try agian."
     end
-    # elsif user_guess.is_a?(Integer)
   end
 
   def turn
@@ -85,6 +76,6 @@ end
 game = Game.new
 user_guess = (gets.chomp)
 # require'pry';binding.pry
-result = game.valid?(user_guess)
+game.valid?(user_guess)
 # puts result
-p "end"
+# p "end"
