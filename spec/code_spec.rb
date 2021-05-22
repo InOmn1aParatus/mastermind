@@ -13,6 +13,5 @@ RSpec.describe Code do
 
         secret_code.generate
         expect(secret_code.pattern.length).to eq(4)
-        # expect(secret_code.pattern).to include('R', 'G', 'B', 'Y')
     end
 end
