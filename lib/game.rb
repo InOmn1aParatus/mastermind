@@ -66,15 +66,15 @@ class Game
   def evaluate(user_guess)
     return end_game if @code.pattern == user_guess.split('')
     user_guess.split('')
-    position = @code.pattern.zip(user_guess).map { |a, b| a if a == b }
-    element = @code.pattern.zip(user_guess).map { |a, b| a if a != b }
-    # if position contains no nil.
+    position = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
+    element = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
     puts "'#{user_guess.join}' has #{elements.compact.length} of the correct elements"
     puts "with #{position.compact.length} in the correct positions."
     if turn_count > 1
       puts "You've taken #{turn_count} guesses."
     else
       puts "You've taken #{turn_count} guess."
+    end
   end
 
   def turn
