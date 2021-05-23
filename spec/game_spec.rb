@@ -13,7 +13,7 @@ RSpec.describe Game do
     game = Game.new
 
     expect(game.code).to be_a(Code)
-    expect(game.code.pattern).to eq(['R', 'G', 'B', 'Y'])
+    expect(game.code.pattern).to eq(['r', 'g', 'b', 'y'])
   end
 
   context 'methods' do
@@ -22,12 +22,17 @@ RSpec.describe Game do
 
       expect(game).to respond_to(:welcome)
       expect(game).to respond_to(:instructions)
+      expect(game).to respond_to(:quit)
     end
 
-    xit 'accepts user input' do
+    it 'game_menu accepts user input' do
       game = Game.new
 
-      expect(game.game_menu('p')).to
+      expect(game.game_menu('p')).to receive(:run)
+      expect(game.game_menu('i')).to receive(:instructions)
+      expect(game.game_menu('q')).to receive(:quit)
+
+
     end
 
     xit 'calls generate & turn method' do
@@ -43,7 +48,7 @@ RSpec.describe Game do
       expect(game.compare('bbry')).to eq(false)
     end
 
-    it 'checks input for validity' do
+    xit 'checks input for validity' do
       game = Game.new
 
       expect(game.valid?('RgBy')).to eq(true)
