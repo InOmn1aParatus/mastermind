@@ -27,7 +27,7 @@ class Game
   end
 
   def quit
-    puts 'Thanks for playing. Come back when your ready for a challenge.'
+    puts 'Thanks for playing. Come back when you are ready for a challenge.'
     exit
   end
 
@@ -52,15 +52,29 @@ class Game
   def valid?(user_guess)
     user_guess.downcase!
     if user_guess.count("rbgy") == 4
-      true
+      evaluate(user_guess)
     elsif user_guess == 'c'
-      p @code.pattern.join.downcase
+      p @code.pattern.join
     elsif user_guess == 'q'
       quit
     else
       puts "Your guess needs to be 4 characters and can only contain
       r,g,b or y. please try agian."
     end
+  end
+
+  def evaluate(user_guess)
+    return end_game if @code.pattern == user_guess.split('')
+    user_guess.split('')
+    position = @code.pattern.zip(user_guess).map { |a, b| a if a == b }
+    element = @code.pattern.zip(user_guess).map { |a, b| a if a != b }
+    # if position contains no nil.
+    puts "'#{user_guess.join}' has #{elements.compact.length} of the correct elements"
+    puts "with #{position.compact.length} in the correct positions."
+    if turn_count > 1
+      puts "You've taken #{turn_count} guesses."
+    else
+      puts "You've taken #{turn_count} guess."
   end
 
   def turn
@@ -73,9 +87,11 @@ class Game
 
   end
 
-  def compare(guess)
-    if guess.size != 4
-    end
+  def end_game
+    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{turn_count} guesses over #{}."
+    puts "Do you want to (p)lay again or (q)uit?"
+    print '>  '
+    game_menu(gets.chomp)
   end
 end
 
