@@ -2,7 +2,7 @@ class Code
     attr_reader :pattern
 
     def initialize
-        @pattern = ['R', 'G', 'B', 'Y']
+        @pattern = ['r', 'g', 'b', 'y']
     end
 
     def generate
