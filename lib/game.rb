@@ -88,6 +88,10 @@ class Game
   end
 
   def end_game
+    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{turn_count} guesses over #{}."
+    puts "Do you want to (p)lay again or (q)uit?"
+    print '>  '
+    game_menu(gets.chomp)
   end
 end
 
