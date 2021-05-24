@@ -1,7 +1,7 @@
 require './lib/code'
 
 class Game
-  attr_reader :code
+  attr_reader :code, :turn_count
 
   def initialize
     @code = Code.new
@@ -53,9 +53,12 @@ class Game
   def valid?(user_guess)
     user_guess.downcase!
     if user_guess.count("rbgy") == 4
+      @turn_count += 1
       evaluate(user_guess)
     elsif user_guess == 'c'
-      p @code.pattern.join
+      @turn_count += 1
+      puts "The secret code is: '#{@code.pattern.join}'"
+      valid?(gets.chomp)
     elsif user_guess == 'q'
       quit
     elsif user_guess.count < 4
@@ -84,13 +87,17 @@ class Game
   end
 
   def turn
-    while @turn_count < 11 do
+    while @turn_count <= 10 do
       puts 'What is your guess?'
       print '>  '
-      user_guess = (gets.chomp.upcase)
+      user_guess = (gets.chomp)
       valid?(user_guess)
     end
-
+    puts 'Game Over!'
+    puts 'Would you like to (p)lay again or (q)uit?'
+    print '>  '
+    game_menu(gets.chomp)
+    @turn_count = 0
   end
 
   def end_game
