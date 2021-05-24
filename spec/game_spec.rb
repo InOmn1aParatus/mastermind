@@ -56,8 +56,8 @@ RSpec.describe Game do
 
     end
 
-    # it '
-
+    # it 'captures the user's play time' do
+    # game = Game.new
 
   end
 end
