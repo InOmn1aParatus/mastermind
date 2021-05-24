@@ -56,7 +56,7 @@ RSpec.describe Game do
 
     end
 
-    it '
+    # it '
 
 
   end

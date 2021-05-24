@@ -1,7 +1,7 @@
 require './lib/code'
 
 class Game
-  attr_reader :code, :turn_count
+  attr_reader :code, :turn_count, :starting, :ending
 
   def initialize
     @code = Code.new
@@ -47,6 +47,7 @@ class Game
 
   def run
     @code.generate
+    @starting = Time.now
     turn
   end
 
@@ -59,6 +60,7 @@ class Game
       @turn_count += 1
       puts "The secret code is: '#{@code.pattern.join}'"
       valid?(gets.chomp)
+      # Possible 'quit' moment
     elsif user_guess == 'q'
       quit
     elsif user_guess.count < 4
@@ -101,7 +103,10 @@ class Game
   end
 
   def end_game
-    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{@turn_count} guesses over #{}."
+    @ending = Time.now
+    game_time = @ending - @starting
+    game_time.round
+    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{@turn_count} guesses over #{game_time}."
     puts "Do you want to (p)lay again or (q)uit?"
     print '>  '
     game_menu(gets.chomp)
