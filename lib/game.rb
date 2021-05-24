@@ -89,7 +89,7 @@ class Game
   end
 
   def turn
-    while @turn_count <= 10 do
+    while @turn_count < 10 do
       puts 'What is your guess?'
       print '>  '
       user_guess = (gets.chomp)
