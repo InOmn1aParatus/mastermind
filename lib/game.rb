@@ -1,7 +1,7 @@
 require './lib/code'
 
 class Game
-  attr_reader :code
+  attr_reader :code, :turn_count
 
   def initialize
     @code = Code.new
@@ -32,14 +32,15 @@ class Game
   end
 
   def game_menu(user_input)
-    if user_input == 'p'
-      puts 'We playin now'
+    if user_input == 'p' || user_input == 'play'
+      run
     elsif user_input == 'i'
       instructions
-    elsif user_input == 'q'
+    elsif user_input == 'q' || user_input == 'quit'
       quit
     else
-      puts "Hmmmm...\n\n"
+      puts "Hmmmm . . ."
+      sleep 3
       welcome
     end
   end
@@ -52,43 +53,55 @@ class Game
   def valid?(user_guess)
     user_guess.downcase!
     if user_guess.count("rbgy") == 4
+      @turn_count += 1
       evaluate(user_guess)
     elsif user_guess == 'c'
-      p @code.pattern.join
+      @turn_count += 1
+      puts "The secret code is: '#{@code.pattern.join}'"
+      valid?(gets.chomp)
     elsif user_guess == 'q'
       quit
+    elsif user_guess.count < 4
+      puts 'Your guess is too short'
+      print '>  '
+      valid?(gets.chomp)
     else
-      puts "Your guess needs to be 4 characters and can only contain
-      r,g,b or y. please try agian."
+      puts 'Your guess is too long'
+      print '>  '
+      valid?(gets.chomp)
     end
   end
 
   def evaluate(user_guess)
     return end_game if @code.pattern == user_guess.split('')
-    user_guess.split('')
-    position = @code.pattern.zip(user_guess).map { |a, b| a if a == b }
-    element = @code.pattern.zip(user_guess).map { |a, b| a if a != b }
-    # if position contains no nil.
-    puts "'#{user_guess.join}' has #{elements.compact.length} of the correct elements"
+    user_guess = user_guess.split('')
+    position = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
+    element = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
+    puts "'#{user_guess.join}' has #{element.compact.length} of the correct elements"
     puts "with #{position.compact.length} in the correct positions."
-    if turn_count > 1
-      puts "You've taken #{turn_count} guesses."
+    if @turn_count > 1
+      puts "You've taken #{@turn_count} guesses."
     else
-      puts "You've taken #{turn_count} guess."
+      puts "You've taken #{@turn_count} guess."
+    end
   end
 
   def turn
-    while turn_count < 11 do
+    while @turn_count <= 10 do
       puts 'What is your guess?'
       print '>  '
-      user_guess = (gets.chomp.upcase)
+      user_guess = (gets.chomp)
       valid?(user_guess)
     end
-
+    puts 'Game Over!'
+    puts 'Would you like to (p)lay again or (q)uit?'
+    print '>  '
+    game_menu(gets.chomp)
+    @turn_count = 0
   end
 
   def end_game
-    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{turn_count} guesses over #{}."
+    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{@turn_count} guesses over #{}."
     puts "Do you want to (p)lay again or (q)uit?"
     print '>  '
     game_menu(gets.chomp)

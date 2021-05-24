@@ -13,42 +13,51 @@ RSpec.describe Game do
     game = Game.new
 
     expect(game.code).to be_a(Code)
-    expect(game.code.pattern).to eq(['R', 'G', 'B', 'Y'])
+    expect(game.code.pattern).to eq(['r', 'g', 'b', 'y'])
   end
 
   context 'methods' do
-    it 'responds to printing methods' do
+    xit 'responds to printing methods' do
       game = Game.new
 
       expect(game).to respond_to(:welcome)
       expect(game).to respond_to(:instructions)
+      expect(game).to respond_to(:quit)
     end
 
-    xit 'accepts user input' do
+    xit 'game_menu accepts user input' do
       game = Game.new
 
-      expect(game.game_menu('p')).to
+      expect(game.game_menu('p')).to receive(:run)
+      expect(game.game_menu('i')).to receive(:instructions)
+      expect(game.game_menu('q')).to receive(:quit)
     end
 
-    xit 'calls generate & turn method' do
+    xit '#run calls generate & turn method' do
       game = Game.new
 
-      expect
+      expect(game).to receive(:run) # and contains @code.generate
+      # expect(game.run).to contain(@code.generate)
+      # expect(game.run).to call(game.turn)
     end
 
-    xit 'compares guess to code' do
+    xit 'checks input for validity' do
+      game = Game.new
+      game.valid?('rgbb')
+      expect(game.turn_count).to eq(1)
+      game.valid?('c')
+      expect(game.turn_count).to eq(2)
+      # test for user_guess too short
+      # test for user_guess too long
+    end
+
+    xit 'evaluates guess against code' do
       game = Game.new
 
-      expect(game.compare('rgby')).to eq(true)
-      expect(game.compare('bbry')).to eq(false)
     end
 
-    it 'checks input for validity' do
-      game = Game.new
+    it '
 
-      expect(game.valid?('RgBy')).to eq(true)
-      # expect(game.valid?('c')).to eq('rgby')
-      # expect(game.valid?('q')).to eq('rgby')
-    end
+
   end
 end
