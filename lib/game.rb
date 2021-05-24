@@ -1,7 +1,10 @@
 require './lib/code'
 
 class Game
-  attr_reader :code, :turn_count, :starting, :ending
+  attr_reader :code,
+              :turn_count,
+              :starting,
+              :ending
 
   def initialize
     @code = Code.new
@@ -27,7 +30,7 @@ class Game
   end
 
   def quit
-    puts 'Thanks for playing. Come back when you are ready for a challenge.'
+    puts 'Thanks for playing! Come back when you are ready for a challenge.'
     exit
   end
 
@@ -47,6 +50,9 @@ class Game
 
   def run
     @code.generate
+    puts "I have generated a beginner sequence with four elements"
+    puts "made up of: (r)ed, (g)reen, (b)lue, and (y)ellow."
+    puts "Use (q)uit at any time to end the game."
     @starting = Time.now
     turn
   end
@@ -59,16 +65,19 @@ class Game
     elsif user_guess == 'c'
       @turn_count += 1
       puts "The secret code is: '#{@code.pattern.join}'"
-      valid?(gets.chomp)
-      # Possible 'quit' moment
+      turn
     elsif user_guess == 'q'
       quit
-    elsif user_guess.count < 4
+    elsif user_guess.length < 4
       puts 'Your guess is too short'
       print '>  '
       valid?(gets.chomp)
-    else
+    elsif user_guess.length > 4
       puts 'Your guess is too long'
+      print '>  '
+      valid?(gets.chomp)
+    else
+      puts "Sorry, but your guess can only include 'R', 'B', 'G', or 'Y'."
       print '>  '
       valid?(gets.chomp)
     end
@@ -102,11 +111,16 @@ class Game
     @turn_count = 0
   end
 
-  def end_game
+  def game_timer
     @ending = Time.now
     game_time = @ending - @starting
-    game_time.round
-    puts "Congratulations! You guessed the sequence '#{@code.pattern}' in #{@turn_count} guesses over #{game_time}."
+    game_min = (game_time / 60.0).floor
+    game_sec = (game_time % 60.0).round
+    puts "Congratulations! You guessed the sequence '#{@code.pattern.join.upcase}' in #{@turn_count} guesses over #{game_min} minutes, #{game_sec} seconds."
+  end
+
+  def end_game
+    game_timer
     puts "Do you want to (p)lay again or (q)uit?"
     print '>  '
     game_menu(gets.chomp)
