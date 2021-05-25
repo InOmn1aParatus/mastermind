@@ -3,13 +3,13 @@ require './lib/game.rb'
 require 'pry'
 
 RSpec.describe Game do
-  it 'exists' do
+  xit 'exists' do
     game = Game.new
 
     expect(game).to be_a(Game)
   end
 
-  it 'had Code attribute' do
+  xit 'had Code attribute' do
     game = Game.new
 
     expect(game.code).to be_a(Code)
@@ -56,8 +56,11 @@ RSpec.describe Game do
 
     end
 
-    # it 'captures the user's play time' do
-    # game = Game.new
+    it 'convert time into minutes and seconds' do
+      game = Game.new
+
+      expect(game.game_timer.game_min).to eq(0)
+    end
 
   end
 end
