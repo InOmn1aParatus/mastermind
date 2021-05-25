@@ -37,7 +37,7 @@ class Game
   def game_menu(user_input)
     if user_input == 'p' || user_input == 'play'
       run
-    elsif user_input == 'i'
+    elsif user_input == 'i' || user_input == 'instructions'
       instructions
     elsif user_input == 'q' || user_input == 'quit'
       quit

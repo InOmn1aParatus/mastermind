@@ -17,7 +17,7 @@ RSpec.describe Game do
   end
 
   context 'methods' do
-    xit 'responds to printing methods' do
+    it 'responds to printing methods' do
       game = Game.new
 
       expect(game).to respond_to(:welcome)
@@ -25,15 +25,33 @@ RSpec.describe Game do
       expect(game).to respond_to(:quit)
     end
 
-    xit 'game_menu accepts user input' do
+    it 'calls game menu' do
       game = Game.new
+      allow(game).to receive(:gets).and_return('p')
+      allow(game).to receive(:game_menu).and_return('Game Menu called')
+      expect(game.welcome).to eq('Game Menu called')
 
-      expect(game.game_menu('p')).to receive(:run)
-      expect(game.game_menu('i')).to receive(:instructions)
-      expect(game.game_menu('q')).to receive(:quit)
+      allow(game).to receive(:gets).and_return('i')
+      allow(game).to receive(:game_menu).and_return('Game Menu called')
+      expect(game.instructions).to eq('Game Menu called')      
     end
 
-    xit '#run calls generate & turn method' do
+    it 'game_menu accepts user input' do
+      game = Game.new
+      allow(game).to receive(:gets).and_return('p')
+      allow(game).to receive(:run).and_return('Run called')
+      expect(game.game_menu('p')).to eq('Run called')
+
+      allow(game).to receive(:gets).and_return('i')
+      allow(game).to receive(:instructions).and_return('Instructions called')
+      expect(game.game_menu('i')).to eq('Instructions called')
+      
+      allow(game).to receive(:gets).and_return('q')
+      allow(game).to receive(:quit).and_return('Quit called')
+      expect(game.game_menu('q')).to eq('Quit called')
+    end
+
+    it '#run calls generate & turn method' do
       game = Game.new
 
       expect(game).to receive(:run) # and contains @code.generate
