@@ -87,8 +87,9 @@ class Game
     return end_game if @code.pattern == user_guess.split('')
     user_guess = user_guess.split('')
     position = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
-    element = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
-    puts "'#{user_guess.join}' has #{element.compact.length} of the correct elements"
+    element = user_guess.intersection(@code.pattern)
+    # element = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
+    puts "'#{user_guess.join}' has #{element.length} of the correct elements"
     puts "with #{position.compact.length} in the correct positions."
     if @turn_count > 1
       puts "You've taken #{@turn_count} guesses."
