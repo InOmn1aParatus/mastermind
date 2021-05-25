@@ -59,17 +59,17 @@ RSpec.describe Game do
       expect(game.starting).to eq(2)
     end
 
-    it 'checks input for validity' do
+    it 'recognizes valid guesses' do
       game = Game.new
-      
-      game.valid?('rgbb')
+      user_guess = 'RBGY'
+      allow(game).to receive(:evaluate).and_return('Evaluate called')
+
+      expect(game.valid?(user_guess)).to eq('Evaluate called')
       expect(game.turn_count).to eq(1)
-      
-      game.valid?('c')
-      expect(game.turn_count).to eq(2)
-      
-      # test for user_guess too short
-      # test for user_guess too long
+      expect(user_guess).to eq('rbgy')
+    end
+
+    xit '' do
     end
 
     xit 'evaluates guess against code' do
@@ -77,7 +77,7 @@ RSpec.describe Game do
 
     end
 
-    it 'convert time into minutes and seconds' do
+    xit 'convert time into minutes and seconds' do
       game = Game.new
 
       expect(game.game_timer.game_min).to eq(0)
