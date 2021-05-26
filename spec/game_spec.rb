@@ -33,7 +33,7 @@ RSpec.describe Game do
 
       allow(game).to receive(:gets).and_return('i')
       allow(game).to receive(:game_menu).and_return('Game Menu called')
-      expect(game.instructions).to eq('Game Menu called')      
+      expect(game.instructions).to eq('Game Menu called')
     end
 
     it 'game_menu accepts user input' do
@@ -43,7 +43,7 @@ RSpec.describe Game do
 
       allow(game).to receive(:instructions).and_return('Instructions called')
       expect(game.game_menu('i')).to eq('Instructions called')
-      
+
       allow(game).to receive(:quit).and_return('Quit called')
       expect(game.game_menu('q')).to eq('Quit called')
     end
@@ -69,19 +69,49 @@ RSpec.describe Game do
       expect(user_guess).to eq('rbgy')
     end
 
-    xit '' do
-    end
-
-    xit 'evaluates guess against code' do
+    it 'returns secret code' do
       game = Game.new
+      user_guess = 'c'
+      allow(game).to receive(:turn).and_return('Turn called')
 
+      expect(game.valid?(user_guess)).to eq('Turn called')
+      expect(game.turn_count).to eq(1)
     end
 
-    xit 'convert time into minutes and seconds' do
+    it 'allows midgame quit' do
       game = Game.new
+      user_guess = 'q'
 
-      expect(game.game_timer.game_min).to eq(0)
+      allow(game).to receive(:quit).and_return('Quit called')
+      expect(game.valid?('q')).to eq('Quit called')
     end
 
+    xit 'detects incorrect guess length' do
+      game = Game.new
+      user_guess = 'rbg'
+      allow(game).to receive(:valid?).and_return('valid? called')
+
+      # user_guess = 'rggby'
+
+      expect(game.valid?).to eq(0)
+    end
+
+    it 'calls end_game on correct guess' do
+      game = Game.new
+      user_guess = 'rgby'
+      allow(game).to receive(:end_game).and_return('end_game called')
+
+      expect(game.evaluate(user_guess)).to eq('end_game called')
+    end
+
+    it 'measures accuracy of guess' do
+      game = Game.new
+      user_guess = 'rbgy'
+      allow(game).to receive(:puts).and_return(nil)
+
+      game.evaluate(user_guess)
+binding.pry
+      expect(game.position.compact.length).to eq(2)
+    end
   end
 end
