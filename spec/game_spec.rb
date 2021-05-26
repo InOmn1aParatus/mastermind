@@ -106,12 +106,33 @@ RSpec.describe Game do
 
     it 'measures accuracy of guess' do
       game = Game.new
-      user_guess = 'rbgy'
-      allow(game).to receive(:puts).and_return(nil)
+      user_guess = 'rbgy'.split('')
 
-      game.evaluate(user_guess)
-binding.pry
-      expect(game.position.compact.length).to eq(2)
+      expect(game.position(user_guess)).to eq(2)
+      expect(game.element(user_guess)).to eq(4)
     end
+
+    xit 'manages turn loop' do
+      game = Game.new
+      # user_guess = 'rbgy'
+      allow(game).to receive(:loop).and_yield
+      allow(game.turn).to receive(:gets).and_return('rbgy')
+      # allow(game.turn).to receive(:turn_count).and_return(10)
+      allow(game.turn.while).to receive(:valid?).and_return('Calls .valid?')
+      expect(game.turn.valid?(user_guess)).to eq('Calls .valid?')
+    end
+
+    xit 'displays Game Over sequence' do
+      game = Game.new
+
+      allow(game).to receive(:gets).and_return('z')
+      # allow(game).to receive(:game_timer).and_return('Calls game_timer')
+      allow(game).to receive(:game_menu).and_return('Calls game_menu')
+
+      expect(game.game_over.game_menu).to eq('Calls game_menu')
+    end
+
+    # allow(game).to receive(:puts).and_return(nil)
+
   end
 end

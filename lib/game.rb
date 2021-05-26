@@ -83,13 +83,21 @@ class Game
     end
   end
 
+  def position(user_guess)
+    position = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
+    position.compact.length
+  end
+
+  def element(user_guess)
+    element = user_guess.intersection(@code.pattern)
+    element.length
+  end
+
   def evaluate(user_guess)
     return end_game if @code.pattern == user_guess.split('')
     user_guess = user_guess.split('')
-    position = user_guess.zip(@code.pattern).map { |g_ltr, c_ltr| g_ltr if g_ltr == c_ltr }
-    element = user_guess.intersection(@code.pattern)
-    puts "'#{user_guess.join}' has #{element.length} of the correct elements"
-    puts "with #{position.compact.length} in the correct positions."
+    puts "'#{user_guess.join}' has #{element(user_guess)} of the correct elements"
+    puts "with #{position(user_guess)} in the correct positions."
     if @turn_count > 1
       puts "You've taken #{@turn_count} guesses."
     else
@@ -104,6 +112,10 @@ class Game
       user_guess = (gets.chomp)
       valid?(user_guess)
     end
+    game_over
+  end
+
+  def game_over
     puts 'Game Over!'
     puts 'Would you like to (p)lay again or (q)uit?'
     print '>  '
