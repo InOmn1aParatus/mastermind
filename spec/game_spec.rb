@@ -96,5 +96,22 @@ RSpec.describe Game do
       expect(game.valid?).to eq(0)
     end
 
+    it 'calls end_game on correct guess' do
+      game = Game.new
+      user_guess = 'rgby'
+      allow(game).to receive(:end_game).and_return('end_game called')
+
+      expect(game.evaluate(user_guess)).to eq('end_game called')
+    end
+
+    it 'measures accuracy of guess' do
+      game = Game.new
+      user_guess = 'rbgy'
+      allow(game).to receive(:puts).and_return(nil)
+
+      game.evaluate(user_guess)
+binding.pry
+      expect(game.position.compact.length).to eq(2)
+    end
   end
 end
