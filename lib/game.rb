@@ -138,10 +138,3 @@ class Game
     game_menu(gets.chomp)
   end
 end
-
-# game = Game.new
-# user_guess = (gets.chomp)
-# # require'pry';binding.pry
-# game.valid?(user_guess)
-# # puts result
-# # p "end"
