@@ -112,6 +112,10 @@ class Game
       user_guess = (gets.chomp)
       valid?(user_guess)
     end
+    game_over
+  end
+
+  def game_over
     puts 'Game Over!'
     puts 'Would you like to (p)lay again or (q)uit?'
     print '>  '
