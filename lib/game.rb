@@ -43,7 +43,7 @@ class Game
       quit
     else
       puts "Hmmmm . . ."
-      sleep 3
+      sleep 1.5
       welcome
     end
   end
