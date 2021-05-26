@@ -129,9 +129,12 @@ RSpec.describe Game do
       expect(game.game_over.game_menu).to eq('Calls game_menu')
     end
 
-    it 'resets turn count on new game' do
+    xit 'resets turn count on new game' do
       game = Game.new
-      
+    end
 
+    xit 'reports user game time' do
+      game = Game.new
+    end
   end
 end
