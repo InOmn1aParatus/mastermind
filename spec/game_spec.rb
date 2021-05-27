@@ -3,13 +3,13 @@ require './lib/game.rb'
 require 'pry'
 
 RSpec.describe Game do
-  xit 'exists' do
+  it 'exists' do
     game = Game.new
 
     expect(game).to be_a(Game)
   end
 
-  xit 'had Code attribute' do
+  it 'had Code attribute' do
     game = Game.new
 
     expect(game.code).to be_a(Code)
