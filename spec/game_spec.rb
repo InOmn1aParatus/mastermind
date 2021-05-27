@@ -90,10 +90,7 @@ RSpec.describe Game do
       game = Game.new
       user_guess = 'rbg'
       allow(game).to receive(:valid?).and_return('valid? called')
-
-      # user_guess = 'rggby'
-
-      expect(game.valid?).to eq(0)
+      expect(game.valid?(user_guess)).to eq('valid? called')
     end
 
     it 'calls end_game on correct guess' do
@@ -114,12 +111,12 @@ RSpec.describe Game do
 
     xit 'manages turn loop' do
       game = Game.new
-      # user_guess = 'rbgy'
-      allow(game).to receive(:loop).and_yield
-      allow(game.turn).to receive(:gets).and_return('rbgy')
+      
+      # allow(game.turn).to receive(:gets).and_return('rbgy')
       # allow(game.turn).to receive(:turn_count).and_return(10)
-      allow(game.turn.while).to receive(:valid?).and_return('Calls .valid?')
-      expect(game.turn.valid?(user_guess)).to eq('Calls .valid?')
+      # allow(game.turn.while).to receive(:valid?).and_return('Calls .valid?')
+      # expect(game.turn.valid?(user_guess)).to eq('Calls .valid?')
+      expect(game.turn).to eq('game_over called')
     end
 
     xit 'displays Game Over sequence' do
@@ -132,7 +129,12 @@ RSpec.describe Game do
       expect(game.game_over.game_menu).to eq('Calls game_menu')
     end
 
-    # allow(game).to receive(:puts).and_return(nil)
+    xit 'resets turn count on new game' do
+      game = Game.new
+    end
 
+    xit 'reports user game time' do
+      game = Game.new
+    end
   end
 end
