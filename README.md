@@ -11,9 +11,26 @@ Mastermind is a REPL-based program that mimics the popular tabletop game, *Codeb
 
 ## Setup
 
+Clone this repository, then input the following on the command line:
+```ruby
+$ruby mastermind.rb
+```
+You should then see...
+[![Screen-Shot-2021-09-16-at-2-48-46-PM.png](https://i.postimg.cc/6q9W6QCz/Screen-Shot-2021-09-16-at-2-48-46-PM.png)](https://postimg.cc/G85wqd7s)
+
 ## How to Play
 
+To win, you must guess the correct RGBY combination in 10 or fewer turns. After each turn, the game will provide you with a hint, telling you both how many colors you guessed correctly and how many colors are in the correct position.
+
+<details>	
+  <summary><b>Hint:</b></summary>
+  <br />
+  Feeling stuck? Enter "C" to cheat 😉 .
+</details>
+
 ## Learning Goals
+
+Mastermind was a 10-day group project for Turing School's Back End Engineering Program. The purpose of the project was to learn how to create a REPL-based program that operated through various "if" statements and employed both abstraction and the single-responsibility principle of OOP.
 
 ## Contributors
 
