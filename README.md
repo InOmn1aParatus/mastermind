@@ -1,7 +1,5 @@
 # Mastermind
 
-## Overview
-
 Mastermind is a REPL-based program that mimics the popular tabletop game, *Codebreaker*. Using the command line, a user is able to play through 10 rounds of a game designed to test their own logic to crack the four-color code (e.g. RGBY).
 
 - [Setup](#setup)
