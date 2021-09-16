@@ -9,7 +9,7 @@ Mastermind is a REPL-based program that mimics the popular tabletop game, *Codeb
 
 ## Setup
 
-Clone this repository, then input the following on the command line:
+Clone this repository, navigate into the root directory, then input the following on the command line:
 ```ruby
 $ruby mastermind.rb
 ```
