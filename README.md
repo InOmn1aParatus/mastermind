@@ -16,6 +16,7 @@ Clone this repository, then input the following on the command line:
 $ruby mastermind.rb
 ```
 You should then see...
+
 [![Screen-Shot-2021-09-16-at-2-48-46-PM.png](https://i.postimg.cc/6q9W6QCz/Screen-Shot-2021-09-16-at-2-48-46-PM.png)](https://postimg.cc/G85wqd7s)
 
 ## How to Play
