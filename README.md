@@ -21,7 +21,7 @@ You should then see...
 
 ## How to Play
 
-To win, you must guess the correct RGBY combination in 10 or fewer turns. After each turn, the game will provide you with a hint, telling you both how many colors you guessed correctly and how many colors are in the correct position.
+To win, you must guess the correct RGBY sequence in 10 or fewer turns. After each turn, the game will provide you with a hint. This will tell you both how many colors you guessed correctly and how many colors are in the correct positions.
 
 <details>	
   <summary><b>Hint:</b></summary>
